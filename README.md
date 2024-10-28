@@ -1,7 +1,8 @@
 # campus_bike 🚲🚴‍♀️
 
 # CÓDIGO 💻
-```
+
+```sql
 CREATE DATABASE Campus_bike;
 USE Campus_bike;
 
@@ -107,8 +108,8 @@ CREATE TABLE Stock (
   id INT AUTO_INCREMENT PRIMARY KEY,
   Cantidad INT,
   idProducto_fk INT,
-  CONSTRAINT FK_ProductoStock FOREIGN KEY (idProducto_fk) REFERENCES Producto(id),
   idSucursal_fk INT,
+  CONSTRAINT FK_ProductoStock FOREIGN KEY (idProducto_fk) REFERENCES Producto(id),
   CONSTRAINT FK_SucursalStock FOREIGN KEY (idSucursal_fk) REFERENCES Sucursal(id)
 );
 
@@ -136,10 +137,10 @@ CREATE TABLE Pedido (
   Cantidad INT,
   Fecha DATE,
   idEstado_fk INT,
-  CONSTRAINT FK_EstadoPedido FOREIGN KEY (idEstado_fk) REFERENCES Estado(id),
   idCliente_fk INT,
-  CONSTRAINT FK_ClientePedido FOREIGN KEY (idCliente_fk) REFERENCES Cliente(id),
   idProducto_fk INT,
+  CONSTRAINT FK_EstadoPedido FOREIGN KEY (idEstado_fk) REFERENCES Estado(id),
+  CONSTRAINT FK_ClientePedido FOREIGN KEY (idCliente_fk) REFERENCES Cliente(id),
   CONSTRAINT FK_ProductoPedido FOREIGN KEY (idProducto_fk) REFERENCES Producto(id)
 );
 
@@ -152,13 +153,13 @@ CREATE TABLE Fecha (
 CREATE TABLE Venta (
   id INT AUTO_INCREMENT PRIMARY KEY,
   idFecha_fk INT,
-  CONSTRAINT FK_FechaVenta FOREIGN KEY (idFecha_fk) REFERENCES Fecha(id),
   Cantidad INT,
   Total DECIMAL(20,2),
   idCliente_fk INT,
-  CONSTRAINT FK_ClienteVenta FOREIGN KEY (idCliente_fk) REFERENCES Cliente(id),
   idBicicleta_fk INT,
   idEmpleado_fk INT,
+  CONSTRAINT FK_FechaVenta FOREIGN KEY (idFecha_fk) REFERENCES Fecha(id),
+  CONSTRAINT FK_ClienteVenta FOREIGN KEY (idCliente_fk) REFERENCES Cliente(id),
   CONSTRAINT FK_EmpleadoVenta FOREIGN KEY (idEmpleado_fk) REFERENCES Empleado(id)
 );
 
